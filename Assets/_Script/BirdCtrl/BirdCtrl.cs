@@ -35,7 +35,7 @@ public class BirdCtrl : MonoBehaviour
             {
                 didFlap = false;
                 rdBody2d.velocity = new Vector2(rdBody2d.velocity.x, boundForce);
-                audioSource.PlayOneShot(pingClip);
+                audioSource.PlayOneShot(flyClip);
             }
         }
         if(rdBody2d.velocity.y >0)
@@ -57,5 +57,20 @@ public class BirdCtrl : MonoBehaviour
     public void Flap()
     {
         didFlap = true;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "PipeHolder")
+        {
+            audioSource.PlayOneShot(pingClip);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Pipe" || collision.gameObject.tag == "Ground")
+        {
+            audioSource.PlayOneShot(dieClip);
+            animator.SetTrigger("Die");
+        }
     }
 }

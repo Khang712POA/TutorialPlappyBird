@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destroy
+  - PipeHolder
+  - Pipe
+  - Ground
   layers:
   - Default
   - TransparentFX
