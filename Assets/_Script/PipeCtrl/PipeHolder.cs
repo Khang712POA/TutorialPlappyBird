@@ -9,6 +9,14 @@ public class PipeHolder : MonoBehaviour
     void Update()
     {
         _PipeMovent();
+
+        if(BirdCtrl.instace != null)
+        {
+            if(BirdCtrl.instace.flag == 1)
+            {
+                Destroy(GetComponent<PipeHolder>());
+            }
+        }
     }
     private void _PipeMovent()
     {

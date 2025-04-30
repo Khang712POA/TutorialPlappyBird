@@ -17,16 +17,30 @@ public class BirdCtrl : MonoBehaviour
 
     private bool isAlive; // default false
     private bool didFlap;
+
+    public float flag = 0;
+    public static BirdCtrl instace;
+    private GameObject SpanwerPipe;
     private void Awake()
     {
         isAlive = true;
         rdBody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        _MakeInstance();
+
+        SpanwerPipe = GameObject.Find("SpawnerPipe");
     }
     void Update()
     {
         _BirdFly();
     }
+    void _MakeInstance()
+    {
+        if(instace == null)
+        {
+            instace = this;
+        }
+    }    
     void _BirdFly()
     {
         if(isAlive)
@@ -69,8 +83,10 @@ public class BirdCtrl : MonoBehaviour
     {
         if(collision.gameObject.tag == "Pipe" || collision.gameObject.tag == "Ground")
         {
+            flag = 1;
             audioSource.PlayOneShot(dieClip);
             animator.SetTrigger("Die");
+            Destroy(SpanwerPipe);
         }
     }
 }
