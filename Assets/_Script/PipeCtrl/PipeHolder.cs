@@ -16,5 +16,11 @@ public class PipeHolder : MonoBehaviour
         temp.x -= speed* Time.deltaTime;
         transform.position = temp;
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Destroy")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
