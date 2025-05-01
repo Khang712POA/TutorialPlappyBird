@@ -21,6 +21,8 @@ public class BirdCtrl : MonoBehaviour
     public float flag = 0;
     public static BirdCtrl instace;
     private GameObject SpanwerPipe;
+
+    public int score = 0;
     private void Awake()
     {
         isAlive = true;
@@ -76,7 +78,13 @@ public class BirdCtrl : MonoBehaviour
     {
         if(collision.tag == "PipeHolder")
         {
+            score++;
             audioSource.PlayOneShot(pingClip);
+
+            if(GameFlappyBirdCtrl.Instance !=null)
+            {
+                GameFlappyBirdCtrl.Instance._SetScore(score);   
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,6 +98,11 @@ public class BirdCtrl : MonoBehaviour
                 audioSource.PlayOneShot(dieClip);
                 animator.SetTrigger("Die");
                 Destroy(SpanwerPipe);
+
+                if (GameFlappyBirdCtrl.Instance != null)
+                {
+                    GameFlappyBirdCtrl.Instance.BirdDieShowPanelOver();
+                }
             }    
         }
     }
