@@ -84,9 +84,13 @@ public class BirdCtrl : MonoBehaviour
         if(collision.gameObject.tag == "Pipe" || collision.gameObject.tag == "Ground")
         {
             flag = 1;
-            audioSource.PlayOneShot(dieClip);
-            animator.SetTrigger("Die");
-            Destroy(SpanwerPipe);
+            if(isAlive)
+            {
+                isAlive = false;
+                audioSource.PlayOneShot(dieClip);
+                animator.SetTrigger("Die");
+                Destroy(SpanwerPipe);
+            }    
         }
     }
 }
