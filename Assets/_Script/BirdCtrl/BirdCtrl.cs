@@ -101,7 +101,7 @@ public class BirdCtrl : MonoBehaviour
 
                 if (GameFlappyBirdCtrl.Instance != null)
                 {
-                    GameFlappyBirdCtrl.Instance.BirdDieShowPanelOver();
+                    GameFlappyBirdCtrl.Instance.BirdDieShowPanelOver(score);
                 }
             }    
         }

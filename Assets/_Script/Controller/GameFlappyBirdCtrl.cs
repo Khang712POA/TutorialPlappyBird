@@ -31,9 +31,16 @@ public class GameFlappyBirdCtrl : MonoBehaviour
     {
         scoreText.text = "" + score;
     }
-    public void BirdDieShowPanelOver()
+    public void BirdDieShowPanelOver(int score)
     {
-        gameOverPanel.SetActive(true); 
+        gameOverPanel.SetActive(true);
+
+        endScoreText.text = "" + score;
+        if(score > GameManager.instance.GetHighScore())
+        {
+            GameManager.instance.SetHighScore(score);
+        }
+        bestScoreText.text = "" + GameManager.instance.GetHighScore();
     }
 
     public void _MenuButton()
