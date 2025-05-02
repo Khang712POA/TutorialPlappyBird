@@ -9,7 +9,7 @@ public class GameFlappyBirdCtrl : MonoBehaviour
     [SerializeField]
     private Button instructionButton;
     [SerializeField] private Text scoreText, endScoreText, bestScoreText;
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverPanel, pausePanel;
     private void Awake()
     {
         _MakeInstance();
@@ -34,5 +34,25 @@ public class GameFlappyBirdCtrl : MonoBehaviour
     public void BirdDieShowPanelOver()
     {
         gameOverPanel.SetActive(true); 
+    }
+
+    public void _MenuButton()
+    {
+        Application.LoadLevel("MainMenu");
+    }
+    public void _RestartAndResumeButton()
+    {
+        Application.LoadLevel("GamePlappyBird");
+        //Application.LoadLevel(Application.loadedLevel);
+    }
+    public void _PauseButton()
+    {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
+    }
+    public void _ResumeButton()
+    {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
     }
 }
